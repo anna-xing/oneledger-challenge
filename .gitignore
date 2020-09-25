@@ -5,6 +5,13 @@
 /.pnp
 .pnp.js
 
+# Oneledger dependencies
+/explorer-sdk-js
+/middle_utility
+/ons-SDK
+/hd-vault
+/ons-faucet
+
 # testing
 /coverage
 
