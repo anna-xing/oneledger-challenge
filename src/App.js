@@ -52,8 +52,14 @@ async function test() {
     console.log(newPart);
 
     // signing + broadcasting
-    const signature = await sign(newPart, emks);
+    const signature = await sign(newPart.data, emks);
     console.log(signature);
+    const txHash = await broadcastTx({
+      publicKey: publicKey, 
+      rawTx: newPart.data, 
+      signature: signature
+    }, env);
+    console.log(txHash)
   }, 15000);
 }
 
@@ -61,8 +67,7 @@ function App() {
   test();
   return (
     <div className="App">
-      <h1>OneLedger Challenge for BorderHacks!</h1>
-      <Card title="Hello!!" />
+      <p>testing line, remove later</p>
     </div>
   );
 }
