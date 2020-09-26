@@ -1,8 +1,8 @@
-// REQUIRES: encryptedMasterKeySeed
+// REQUIRES: yourMasterKeyPassword, encryptedMasterKeySeed
 // RETURNS: { address, publicKey }
 
-async function createAccount(encryptedMasterKeySeed) {
-  const { keyType, keyIndex, yourMasterKeyPassword } = require("./index");
+async function createAccount(yourMasterKeyPassword, encryptedMasterKeySeed) {
+  const { keyType, keyIndex } = require("./index");
   const HDVault = require('hd-vault');
 
   const derivedKeyData = {
