@@ -1,5 +1,5 @@
 // REQUIRES: nothing
-// RETURNS: encryptedMasterKeySeed
+// RETURNS: {mnemonicWords, encryptedMasterKeySeed}
 
 function createWallet() {
   const HDVault = require("hd-vault");
