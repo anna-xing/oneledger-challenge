@@ -1,3 +1,13 @@
+.card {
+  border-radius: 5px;
+  background-color: white;
+  padding: .5em 2em;
+  margin: 1em;
+  box-shadow: 20px black;
+  width: fit-content;
+  height: fit-content;
+}
+
 .App {
   text-align: center;
 }
