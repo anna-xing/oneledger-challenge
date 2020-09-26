@@ -16,7 +16,8 @@ async function addPartTx(
   env
 ) {
   function isValidStrLen(str, len) {
-    return isValidStr(str) && str.length === len;
+    const { isValidString } = require('explorer-sdk-js/util');
+    return isValidString(str) && str.length === len;
   }
 
   const addPartTxType = "990201";
@@ -24,8 +25,7 @@ async function addPartTx(
   const {
     isInteger,
     isPositiveInteger,
-    isValidStr,
-  } = require("explorer-sdk-js");
+  } = require("explorer-sdk-js/util");
   const { requestErrors } = require("middle_utility/errorHandler/errorType");
   const { request, util, offlineSerialize } = require("ons-SDK");
   const { ErrorUtil } = require("middle_utility").TierError;

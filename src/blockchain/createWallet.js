@@ -1,9 +1,8 @@
-// REQUIRES: nothing
+// REQUIRES: yourMasterKeyPassword
 // RETURNS: encryptedMasterKeySeed
 
-function createWallet() {
+function createWallet(yourMasterKeyPassword) {
   const HDVault = require("hd-vault");
-  const { yourMasterKeyPassword } = require("./index");
 
   const mnemonicWords = HDVault.mnemonicUtil.mnemonicGenerator24();
   const masterKey = new HDVault.MasterKeySeedManager(

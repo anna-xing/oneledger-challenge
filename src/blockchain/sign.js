@@ -1,13 +1,12 @@
-// REQUIRES: rawTx
+// REQUIRES: rawTx, encryptedMasterKeySeed
 // RETURNS: signature
 
-async function sign(rawTx) {
+async function sign(rawTx, encryptedMasterKeySeed) {
 const {
   keyType,
   keyIndex,
   yourMasterKeyPassword,
-  encryptedMasterKeySeed,
-} = require("./requestTestOLT");
+} = require("./index");
 const HDVault = require("hd-vault");
 
 const signData = {

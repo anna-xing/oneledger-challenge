@@ -1,4 +1,4 @@
-const yourMasterKeyPassword = "5h$mY_SupEr_sTRong_%$passWorD123#@";
+const yourMasterKeyPassword = "newpassword";
 const fullnodeUrl = "https://comm-test-fn1.devnet.oneledger.network/jsonrpc";
 const faucetServerUrl =
   "https://comm-test-faucet.devnet.oneledger.network/jsonrpc";
