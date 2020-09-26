@@ -20,7 +20,42 @@ const {
   broadcastTx,
 } = require("./blockchain/index");
 
-function App() {
+async function test() {
+  // wallet + account creation
+  const emks = await createWallet();
+  const { i, address, publicKey } = await createAccount(yourMasterKeyPassword, emks);
+  console.log(address);
+
+  // request test olt
+  let response = await requestTestOLT(address);
+  console.log(response);
+  console.log('done requesting test olt');
+
+  setTimeout(async () => {
+
+  // query acc balance
+
+  let balance = await queryAccount({address}, env);
+  console.log(balance);
+
+  // adding a part
+  const { newPart, fee } = await addPartTx({
+    vin: '1D4HR48N73F526307',
+    partType: 'engine',
+    dealerName: 'John',
+    dealerAddress: '9 Apple St',
+    stockNum: 'N8990ABCD',
+    year: 2008,
+    operator: address,
+  }, env);
+  console.log(newPart);
+}, 15000);
+
+// querying for a part
+}
+
+async function App() {
+  test();
   return (
     <div className="App">
       <h1>OneLedger Challenge for BorderHacks!</h1>

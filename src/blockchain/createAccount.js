@@ -1,13 +1,13 @@
 // REQUIRES: yourMasterKeyPassword, encryptedMasterKeySeed
-// RETURNS: { address, publicKey }
+// RETURNS: response = { keyIndex, address, publicKey }
 
 async function createAccount(yourMasterKeyPassword, encryptedMasterKeySeed) {
-  const { keyType, keyIndex } = require("./index");
+  const { keyType } = require("./index");
   const HDVault = require('hd-vault');
 
   const derivedKeyData = {
     keyType: keyType,
-    keyIndex: keyIndex, // Increment keyIndex for generating new keys
+    keyIndex: 0, // Increment keyIndex for generating new keys
     password: yourMasterKeyPassword,
     encryptedMasterKeySeed: encryptedMasterKeySeed,
   };
@@ -17,9 +17,8 @@ async function createAccount(yourMasterKeyPassword, encryptedMasterKeySeed) {
     .catch((error) => {
       throw error;
     });
-
-  const { temp, address, publicKey } = response;
-  return { address, publicKey };
+ 
+  return response;
 }
 
 module.exports = createAccount;
