@@ -1,4 +1,4 @@
-// REQUIRES: query fields, env
+// REQUIRES: query fields, env -- note: operator is address
 // RETURNS: a Promise that will resolve to {query info, tx cost}
 // throws InvalidArgument if bad args
 
@@ -21,7 +21,6 @@ async function addPartTx(
   }
 
   const addPartTxType = "990201";
-
   const {
     isInteger,
     isPositiveInteger,
@@ -67,18 +66,26 @@ async function addPartTx(
     gasAdjustment
   );
   assembledTx.fee.gas = 1000;
+
   const { gas } = assembledTx.fee;
   const feeEstimationResult = await util
     .txFeeEstimator(gas, gasPrice)
     .catch((error) => {
       return Promise.reject(error);
     });
-  return Promise.resolve(
-    ErrorUtil.responseWrap({
+
+    console.log(assembledTx)
+    return assembledTx;
+
+return await offlineSerialize.jsonObjectToBase64(assembledTx);
+  const addResult = await Promise.resolve(
+    ErrorUtil.responseWrap({ // this is messing something up
       ...util.rawTxStructure(offlineSerialize.jsonObjectToBase64(assembledTx)),
       ...{ feeEstimation: feeEstimationResult.response },
     })
   );
+
+  
 }
 
 module.exports = addPartTx;

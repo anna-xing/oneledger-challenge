@@ -23,7 +23,7 @@ const {
 async function test() {
   // wallet + account creation
   const emks = await createWallet(yourMasterKeyPassword);
-  const { i, address, publicKey } = await createAccount(emks);
+  const { i, address, publicKey } = await createAccount(yourMasterKeyPassword, emks);
   console.log(address);
 
   // request test olt
