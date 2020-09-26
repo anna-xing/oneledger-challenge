@@ -16,6 +16,7 @@ async function broadcastTx({publicKey, rawTx, signature}, env) {
     });
 
     const {txHash, height} = response;
+    return { txHash, height };
 }
 
 module.exports = {
