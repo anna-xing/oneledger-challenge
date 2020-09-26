@@ -1,17 +1,21 @@
-const {request} = require('ons-SDK');
+// REQUIRES: {address, currency}, env
+// RETURNS: response
 
-async function queryBalanceForAddr({address, currency}, env) {
-    const queryBalanceObj = {
-        address: address,
-        currency: currency
-    };
+async function queryAccount({ address, currency }, env) {
+  const { request } = require("ons-SDK");
 
-    const {response} = await request.queryCurrencyBalanceForAccount(queryBalanceObj, env).catch(error => {
-        throw error;
+  const queryBalanceObj = {
+    address: address,
+    currency: currency,
+  };
+
+  const { response } = await request
+    .queryCurrencyBalanceForAccount(queryBalanceObj, env)
+    .catch((error) => {
+      throw error;
     });
-    const balance = response;
+
+  return response;
 }
 
-module.exports = {
-    queryBalanceForAddr
-}
+module.exports = queryAccount;

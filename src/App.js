@@ -5,17 +5,17 @@ import Card from "./components";
 
 const {
   yourMasterKeyPassword,
+  fullnodeUrl,
+  faucetServerUrl,
   keyType,
   keyIndex,
-  publicKey,
-  encryptedMasterKeySeed,
   env,
   createWallet,
   createAccount,
   requestTestOLT,
   addPartTx,
   queryPart,
-  queryBalanceForAddr,
+  queryAccount,
   sign,
   broadcastTx,
 } = require("./blockchain/index");

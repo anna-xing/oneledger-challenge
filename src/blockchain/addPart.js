@@ -1,17 +1,35 @@
-const addPartTxType = "990201";
-
-const { isInteger, isPositiveInteger, isValidStr } = require("explorer-sdk-js");
-const { requestErrors } = require("middle_utility/errorHandler/errorType");
-const { request, util, offlineSerialize } = require("ons-SDK");
-const { ErrorUtil } = require("middle_utility").TierError;
-
-function isValidStrLen(str, len) {
-  return isValidStr(str) && str.length === len;
-}
-
+// REQUIRES: query fields, env
+// RETURNS: a Promise that will resolve to {query info, tx cost}
 // throws InvalidArgument if bad args
-async function addPartTx({vin, partType, dealerName, dealerAddress,
-    stockNum, year, operator, gasAdjustment = 0}, env) {
+
+async function addPartTx(
+  {
+    vin,
+    partType,
+    dealerName,
+    dealerAddress,
+    stockNum,
+    year,
+    operator,
+    gasAdjustment = 0,
+  },
+  env
+) {
+  function isValidStrLen(str, len) {
+    return isValidStr(str) && str.length === len;
+  }
+
+  const addPartTxType = "990201";
+
+  const {
+    isInteger,
+    isPositiveInteger,
+    isValidStr,
+  } = require("explorer-sdk-js");
+  const { requestErrors } = require("middle_utility/errorHandler/errorType");
+  const { request, util, offlineSerialize } = require("ons-SDK");
+  const { ErrorUtil } = require("middle_utility").TierError;
+
   // input check
   if (
     !isValidStrLen(vin, 17) ||
@@ -63,6 +81,4 @@ async function addPartTx({vin, partType, dealerName, dealerAddress,
   );
 }
 
-module.exports = {
-  addPartTx,
-};
+module.exports = addPartTx;

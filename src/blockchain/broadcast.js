@@ -1,6 +1,9 @@
-const {request, requestConfig} = require('ons-SDK');
+// REQUIRES: {publicKey, rawTx, signature}, env
+// RETURNS: {txHash, height}
 
 async function broadcastTx({publicKey, rawTx, signature}, env) {
+    const {request, requestConfig} = require('ons-SDK');
+
     const broadcastBody = {
         broadCastType: requestConfig.BroadcastType.Sync,
         rawTx: rawTx,
@@ -19,6 +22,4 @@ async function broadcastTx({publicKey, rawTx, signature}, env) {
     return { txHash, height };
 }
 
-module.exports = {
-    broadcastTx
-}
+module.exports = broadcastTx;

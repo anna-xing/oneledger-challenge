@@ -1,30 +1,31 @@
+// REQUIRES: rawTx
+// RETURNS: signature
+
+async function sign(rawTx) {
 const {
   keyType,
   keyIndex,
   yourMasterKeyPassword,
   encryptedMasterKeySeed,
-} = require("./setup");
-const HDVault = require('hd-vault');
+} = require("./requestTestOLT");
+const HDVault = require("hd-vault");
 
-async function sign(rawTx) {
-  const signData = {
-    message: rawTx,
-    keyType: keyType,
-    keyIndex: keyIndex,
-    password: yourMasterKeyPassword,
-    encryptedMasterKeySeed: encryptedMasterKeySeed,
-  };
+const signData = {
+  message: rawTx,
+  keyType: keyType,
+  keyIndex: keyIndex,
+  password: yourMasterKeyPassword,
+  encryptedMasterKeySeed: encryptedMasterKeySeed,
+};
 
-  const { response } = await HDVault.derivedKeyManager
-    .signTx(signData)
-    .catch((error) => {
-      throw error;
-    });
+const { response } = await HDVault.derivedKeyManager
+  .signTx(signData)
+  .catch((error) => {
+    throw error;
+  });
 
   const { signature } = response;
   return signature;
 }
 
-module.exports = {
-  sign
-};
+module.exports = sign;
