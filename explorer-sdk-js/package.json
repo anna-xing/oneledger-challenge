@@ -1,0 +1,23 @@
+{
+  "name": "explorer-sdk-js",
+  "version": "1.0.0",
+  "description": "SDK for Oneledger explorer",
+  "main": "main.js",
+  "scripts": {
+    "test": "nyc mocha"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "lodash": "4.17.15",
+    "request": "2.88.0",
+    "middle_utility": "file:./middle_utility"
+  },
+  "devDependencies": {
+    "sinon-chai": "^3.5.0",
+    "sinon": "^9.0.2",
+    "chai": "^4.2.0",
+    "mocha": "^6.1.4",
+    "nyc": "^14.1.1"
+  }
+}

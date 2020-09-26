@@ -1,0 +1,10 @@
+node_modules/
+.DS_Store
+.idea/
+.nyc_output/
+mochawesome-report/
+
+dist
+/.cache
+
+oneledger_sdk_config.json

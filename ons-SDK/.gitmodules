@@ -1,0 +1,8 @@
+[submodule "middle_utility"]
+	path = middle_utility
+	url = git@github.com:Oneledger/middle_utility.git
+    branch = master
+[submodule "hd-vault"]
+	path = hd-vault
+	url = git@github.com:Oneledger/hd-vault.git
+	branch = master

@@ -1,0 +1,35 @@
+{
+  "name": "ons-SDK",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "browserslist": [
+    "last 1 Chrome versions"
+  ],
+  "scripts": {
+    "test": "nyc mocha --reporter mochawesome",
+    "browser-test": "npm run remove-bundle; browserify ./test/storeBrowser.test.js -o ./test/storeBrowserBundle.test.js; browserify ./store/storeBrowser.js -o ./store/storeBrowserBundle.js",
+    "remove-bundle": "rm -rf ./test/storeBrowserBundle.test.js; rm -rf ./store/storeBrowserBundle.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@ledgerhq/hw-app-btc": "5.11.0",
+    "@ledgerhq/hw-app-eth": "5.11.0",
+    "Base64": "1.0.2",
+    "hd-vault": "file:./hd-vault",
+    "lodash": "4.17.15",
+    "middle_utility": "file:./middle_utility",
+    "request": "2.88.0",
+    "uuid": "3.3.3"
+  },
+  "devDependencies": {
+    "sinon-chai": "^3.5.0",
+    "chai": "^4.2.0",
+    "sinon": "^9.0.2",
+    "mocha": "^6.2.3",
+    "mochawesome": "^5.0.0",
+    "nyc": "^14.1.1",
+    "should": "^13.2.3"
+  }
+}

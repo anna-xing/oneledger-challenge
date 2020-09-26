@@ -1,5 +1,14 @@
+.card {
+  border-radius: 5px;
+  background-color: white;
+  padding: 2em;
+  margin: 1em;
+  box-shadow: 20px black;
+}
+
 body {
   margin: 0;
+  background-color: rgb(204, 220, 255);
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;

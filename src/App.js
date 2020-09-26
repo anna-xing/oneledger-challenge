@@ -1,6 +1,8 @@
 import React from 'react';
 import './App.css';
 
+import Card from './components'
+
 // Predefined Oneledger transaction stuff -----------------------
 
 const yourMasterKeyPassword = "5h$mY_SupEr_sTRong_%$passWorD123#@"; 
@@ -54,7 +56,7 @@ function App() {
 	return (
 		<div className="App">
 		<h1>OneLedger Challenge for BorderHacks!</h1>
-		<p>Test test</p>
+		<Card title="Hello!!" />
 		</div>
 	);
 }
