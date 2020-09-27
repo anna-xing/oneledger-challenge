@@ -1,3 +1,9 @@
+// Import navbar
+$.get("navbar.html", function (data) {
+    $("#nav-placeholder").replaceWith(data);
+});
+
+// Import blockchain constants + functions
 const {
   yourMasterKeyPassword,
   fullnodeUrl,
