@@ -16,7 +16,8 @@ const {
 
 async function test() {
   // wallet + account creation
-  const emks = await createWallet(yourMasterKeyPassword);
+  let temp = await createWallet(yourMasterKeyPassword);
+  const emks = temp.encryptedMasterKeySeed;
   const { i, address, publicKey } = await createAccount(
     yourMasterKeyPassword,
     emks
