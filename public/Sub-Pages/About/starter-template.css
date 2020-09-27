@@ -1,7 +1,15 @@
+/* font integration  */
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Russo+One&display=swap');
+
 body {
   padding-top: 5rem;
+  background: url('https://images.pexels.com/photos/5157885/pexels-photo-5157885.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
+  color:black;
 }
 .starter-template {
   padding: 3rem 1.5rem;
   text-align: center;
+  font-family: 'Russo One';
 }
