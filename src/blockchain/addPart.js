@@ -1,6 +1,5 @@
 // REQUIRES: query fields, env -- note: operator is address
-// RETURNS: a Promise that will resolve to {query info, tx cost}
-// throws InvalidArgument if bad args
+// RETURNS: rawTx
 
 async function addPartTx(
   {
@@ -20,7 +19,7 @@ async function addPartTx(
     return isValidString(str) && str.length === len;
   }
 
-  const addPartTxType = "990201";
+  const addPartTxType = 990201;
   const {
     isInteger,
     isPositiveInteger,
@@ -73,11 +72,9 @@ async function addPartTx(
     .catch((error) => {
       return Promise.reject(error);
     });
+    
+    return await offlineSerialize.jsonObjectToBase64(assembledTx);
 
-    console.log(assembledTx)
-    return assembledTx;
-
-return await offlineSerialize.jsonObjectToBase64(assembledTx);
   const addResult = await Promise.resolve(
     ErrorUtil.responseWrap({ // this is messing something up
       ...util.rawTxStructure(offlineSerialize.jsonObjectToBase64(assembledTx)),

@@ -1,5 +1,5 @@
 // REQUIRES: {publicKey, rawTx, signature}, env
-// RETURNS: {txHash, height}
+// RETURNS: txHash
 
 async function broadcastTx({publicKey, rawTx, signature}, env) {
     const {request, requestConfig} = require('ons-SDK');
@@ -14,7 +14,7 @@ async function broadcastTx({publicKey, rawTx, signature}, env) {
         }
     };
 
-    const {response} = await request.broadcastTx(broadcastBody, env).catch(error => {
+    const { response } = await request.broadcastTx(broadcastBody, env).catch(error => {
         throw error;
     });
 
