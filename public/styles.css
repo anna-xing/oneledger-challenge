@@ -191,6 +191,7 @@ a {
 
 .nav-left > h2 {
   margin-top: 1.3em;
+  margin-left: 0;
   color: var(--primaryCol);
 }
 
