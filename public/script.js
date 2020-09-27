@@ -1,134 +1,162 @@
 const {
-    yourMasterKeyPassword,
-    fullnodeUrl,
-    faucetServerUrl,
-    keyType,
-    keyIndex,
-    env,
-    createWallet,
-    createAccount,
-    requestTestOLT,
-    addPartTx,
-    queryPart,
-    queryAccount,
-    sign,
-    broadcastTx
-} = require('./../src/blockchain/index');
+  yourMasterKeyPassword,
+  fullnodeUrl,
+  faucetServerUrl,
+  keyType,
+  keyIndex,
+  env,
+  createWallet,
+  createAccount,
+  requestTestOLT,
+  addPartTx,
+  queryPart,
+  queryAccount,
+  sign,
+  broadcastTx,
+} = require("./../src/blockchain/index");
+
+/* OTHER STUFF TO FINISH:
+    - confirmUpload(): indicates that the upload has been successful
+    - EventListeners for components which indicate invalid input
+    - EventListeners for components which indicate account errors
+*/
 
 // Errors
 // TODO: attach EventListeners to components that respond to errors
-const accountError = new Event('accountError'); 
-  // For account-related errors, e.g. balance too low
+const accountError = new Event("accountError");
+// For account-related errors, e.g. balance too low
 
 // Loading states
-const startLoad = new Event('startLoad');
-const finishLoad = new Event('finishLoad');
+const startLoad = new Event("startLoad");
+const finishLoad = new Event("finishLoad");
 
 // Local storage functions
 function localStore(key, val) {
-    window.localStorage.setItem(key, JSON.stringify(val));
+  window.localStorage.setItem(key, JSON.stringify(val));
 }
 function localGet(key) {
-    return JSON.parse(window.localStorage.getItem(key));
+  return JSON.parse(window.localStorage.getItem(key));
 }
 
 // Display loading icon based on loading state
 // TODO: add id='loadIcon' to loading icon
-const loadIcon = Document.getElementById('loadIcon')
-window.addEventListener('startLoad', function() {
-    loadIcon.classList.remove('hidden');
-})
-window.addEventListener('finishLoad', function() {
-    loadIcon.classList.add('hidden');
-})
+const loadIcon = Document.getElementById("loadIcon");
+window.addEventListener("startLoad", function () {
+  loadIcon.classList.remove("hidden");
+});
+window.addEventListener("finishLoad", function () {
+  loadIcon.classList.add("hidden");
+});
 
 // Oneledger account initialization
 // Generate mnemonic, private key, public key, address
 // TODO: ADD id='initAccBtn' to the Get Started btn
-const initAccBtn = Document.getElementById('initAccBtn');
+const initAccBtn = Document.getElementById("initAccBtn");
 
-initAccBtn.addEventListener('click', async function(e) {
-    window.dispatchEvent(startLoad);
-    let temp = createWallet(yourMasterKeyPassword);
-    const emks = temp.encryptedMasterKeySeed;
-    const mnemonic = temp.mnemonic;
-    const { i, address, publicKey } = await createAccount(yourMasterKeyPassword, emks);
-    await requestTestOLT(address);
-    setTimeout(async () => {
-        let balance = await queryAccount({ address }, env);
-        if (balance <= 0) {
-            window.dispatchEvent(accountError);
-            return;
-        }
-        window.dispatchEvent(finishLoad);
-    }, 10000);
+initAccBtn.addEventListener("click", async function (e) {
+  window.dispatchEvent(startLoad);
+  let temp = createWallet(yourMasterKeyPassword);
+  const emks = temp.encryptedMasterKeySeed;
+  const mnemonic = temp.mnemonic;
+  const { i, address, publicKey } = await createAccount(
+    yourMasterKeyPassword,
+    emks
+  );
+  await requestTestOLT(address);
+  setTimeout(async () => {
+    let balance = await queryAccount({ address }, env);
+    if (balance <= 0) {
+      window.dispatchEvent(accountError);
+      return;
+    }
+    window.dispatchEvent(finishLoad);
+  }, 10000);
 
-    localStore('mnemonic', mnemonic);
-    localStore('encryptedMasterKeySeed', emks);
-    localStore('publicKey', publicKey);
-    localStore('address', address);
+  localStore("mnemonic", mnemonic);
+  localStore("encryptedMasterKeySeed", emks);
+  localStore("publicKey", publicKey);
+  localStore("address", address);
 });
 
 // Allow manufacturers to upload info
 // TODO: add id='uploadFormBtn' to the submit btn
 //   add appropriate id tags to the form fields
-const uploadFormBtn = Document.getElementById('uploadFormBtn');
+const uploadFormBtn = Document.getElementById("uploadFormBtn");
 
-uploadFormBtn.addEventListener('click', async function(e) {
-    window.dispatchEvent('startLoad');
-    const vals = {
-        vin: Document.getElementById('vin').value.toUpperCase(),
-        part: Document.getElementById('part').value.toUpperCase(),
-            // TODO: how can we standardize the parts??
-        dealerName: Document.getElementById('dealerName').value.toUpperCase(),
-        stockNum: Document.getElementById('stockNum').value.toUpperCase(),
-        dealerAddr: Document.getElementById('dealerAddr').value.toUpperCase(),
-        manufactureYr: parseInt(Document.getElementById('manufactureYr').value)
-    }
+uploadFormBtn.addEventListener("click", async function (e) {
+  window.dispatchEvent("startLoad");
+  const vin = Document.getElementById("vin").value.toUpperCase();
+  const part = Document.getElementById("part").value.toUpperCase();
+  // TODO: how can we standardize the parts??
+  const dealerName = Document.getElementById("dealerName").value.toUpperCase();
+  const stockNum = Document.getElementById("stockNum").value.toUpperCase();
+  const dealerAddr = Document.getElementById("dealerAddr").value.toUpperCase();
+  const manufactureYr = parseInt(
+    Document.getElementById("manufactureYr").value
+  );
 
-    // Input validation
-    let tempVals = Object.values(vals);
-    for (x in tempVals) {
-        if (x === NaN || x === undefined || x === null) {
-            window.dispatchEvent('invalid');
-            return;
-        }
-    }
-    
-    try {
-        const address = localGet('address');
-        const rawTx = await addPartTxs({
-            vin, part, dealerName, dealerAddr, 
-            stockNum, manufactureYr, address}, env);
-        const emks = localGet('encryptedMasterKeySeed');
-        const signature = await sign(rawTx, emks);
-        const publicKey = localGet('publicKey');
-        const txHash = await broadcastTx({
-            publicKey, rawTx, signature}, env);
-    } catch {
-        window.dispatchEvent('invalid');
-    } finally {
-        window.dispatchEvent('finishLoad');
-    }
+  try {
+    const address = localGet("address");
+    const rawTx = await addPartTxs(
+      {
+        vin,
+        part,
+        dealerName,
+        dealerAddr,
+        stockNum,
+        manufactureYr,
+        address,
+      },
+      env
+    );
+    const emks = localGet("encryptedMasterKeySeed");
+    const signature = await sign(rawTx, emks);
+    const publicKey = localGet("publicKey");
+    await broadcastTx({ publicKey, rawTx, signature }, env);
+    maintainBalance(localGet("address"));
+    // confirmUpload();
+  } catch (err) {
+    console.log(err);
+    window.dispatchEvent("invalid");
+  } finally {
+    window.dispatchEvent("finishLoad");
+  }
+});
 
-    maintainBalance(localGet('address'));
-})
-
-// Helper function for maintaining account balance
+// Helper function for maintaining acc balance
 async function maintainBalance(addr) {
-    let balance = await queryAccount({addr}, env);
-    balance = balance.OLT;
-    if (balance <= 0) await requestTestOLT(addr);
+  let balance = await queryAccount({ addr }, env);
+  balance = balance.OLT;
+  if (balance <= 0) await requestTestOLT(addr);
 }
 
 //----------- in progress --------------------
 // Allow end-users to query info
-// TODO: add id='
-const queryFormBtn = Document.getElementById('queryFormBtn');
+// TODO: add id='queryFormBtn' to the submit query btn, and other ids
+const queryFormBtn = Document.getElementById("queryFormBtn");
 
-queryFormBtn.addEventListener('click', async function(e) {
-    window.dispatchEvent('startLoad');
-    const vals = {
+queryFormBtn.addEventListener("click", async function (e) {
+  window.dispatchEvent("startLoad");
+  const vin = Document.getElementById("vin").value.toUpperCase();
+  const part = Document.getElementById("part").value.toUpperCase();
 
-    }
-})
+  try {
+    const response = await queryPart({ vin, part }, env);
+    const { x, y, dealerName, dealerAddr, stockNum, manufactureYr } = response;
+      // TODO: CHANGE THIS ^ B/C IDK THE STRUCTURE OF RESPONSE RIGHT NOW
+    // Page redirect to result
+    window.location.href = window.location.href + "/Sub-Pages/result.html";
+      // 'result.html' == page displaying query result
+    Document.getElementById("vin").value = vin;
+    Document.getElementById("part").value = part;
+    Document.getElementById("dealerName").value = dealerName;
+    Document.getElementById("dealerAddr").value = dealerAddr;
+    Document.getElementById("stockNum").value = stockNum;
+    Document.getElementById("manufactureYr").value = manufactureYr;
+  } catch (err) {
+    console.log(err);
+    window.dispatchEvent("invalid");
+  } finally {
+    window.dispatchEvent("finishLoad");
+  }
+});
