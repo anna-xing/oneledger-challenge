@@ -1,8 +1,6 @@
 import React from "react";
 import "./App.css";
 
-import Card from "./components";
-
 const {
   yourMasterKeyPassword,
   fullnodeUrl,
@@ -25,6 +23,7 @@ async function test() {
   const emks = await createWallet(yourMasterKeyPassword);
   const { i, address, publicKey } = await createAccount(yourMasterKeyPassword, emks);
   console.log(address);
+  console.log('pk - ' + publicKey)
 
   // request test olt
   let response = await requestTestOLT(address);
@@ -37,41 +36,38 @@ async function test() {
     console.log(balance);
 
     // adding a part
-    const newPart = await addPartTx(
+    const rawTx = await addPartTx(
       {
         vin: "1D4HR48N73F526307",
         partType: "engine",
         dealerName: "John",
         dealerAddress: "9 Apple St",
-        stockNum: "N8990ABCD",
+        stockNum: '123456789',
         year: 2008,
         operator: address,
       },
       env
     );
-    console.log(newPart);
-    const partRawTx = newPart.data;
-    console.log('partRawTx: ' + partRawTx)
+    console.log(rawTx);
 
     // signing
-    const signature = await sign(partRawTx, emks);
-    console.log(signature);
+    const signature = await sign(rawTx, emks);
+    console.log('sig: ' + signature);
 
     // broadcasting
     const txHash = await broadcastTx({
       publicKey: publicKey, 
-      rawTx: partRawTx, 
+      rawTx: rawTx,
       signature: signature
     }, env);
     console.log(txHash)
-  }, 15000);
+  }, 5000);
 }
 
 function App() {
   test();
   return (
     <div className="App">
-      <p>testing line, remove later</p>
     </div>
   );
 }

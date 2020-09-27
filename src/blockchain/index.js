@@ -5,7 +5,7 @@ const faucetServerUrl =
 const keyType = "OLT";
 const keyIndex = 0;
 const env = {
-  url: fullnodeUrl,
+  url: "https://cors-anywhere.herokuapp.com/" + fullnodeUrl,
   storeConfig: {
     platform: "browser",
     storeLocation: __dirname,
