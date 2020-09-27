@@ -3,6 +3,8 @@ $.get("navbar.html", function (data) {
     $("#nav-placeholder").replaceWith(data);
 });
 
+console.log('test')
+
 // Import blockchain constants + functions
 const {
   yourMasterKeyPassword,
@@ -59,6 +61,8 @@ window.addEventListener("finishLoad", function () {
 // TODO: ADD id='initAccBtn' to the Get Started btn
 const initAccBtn = Document.getElementById("initAccBtn");
 
+console.log(initAccBtn);
+
 initAccBtn.addEventListener("click", async function (e) {
   window.dispatchEvent(startLoad);
   let temp = createWallet(yourMasterKeyPassword);
@@ -68,6 +72,7 @@ initAccBtn.addEventListener("click", async function (e) {
     yourMasterKeyPassword,
     emks
   );
+  console.log(temp);
   await requestTestOLT(address);
   setTimeout(async () => {
     let balance = await queryAccount({ address }, env);

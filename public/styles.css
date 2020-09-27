@@ -68,7 +68,11 @@ a {
   text-decoration: none;
 }
 
-/********MORE Global styles***/
+/********MORE Global styles***/ 
+.hidden {
+  display: none;
+}
+
 /* Buttons  */
 .btn-white,
 .btn-primary {
