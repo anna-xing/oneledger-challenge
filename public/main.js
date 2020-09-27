@@ -3,8 +3,8 @@
 const typedTextSpan = document.querySelector('.typed-text')
 const cursorSpan = document.querySelector('.cursor')
 
-const textArray = ['Security.', 'Ease.', 'Transparency.', 'Everyone.', 'Bitwheel.']
-const typingDelay = 150
+const textArray = ['Services.', 'Ease.', 'Results.', 'US.', 'Bitwheel.']
+const typingDelay = 200
 const erasingDelay = 100
 const newTextDelay = 2000 // Delay between current and next text
 let textArrayIndex = 0

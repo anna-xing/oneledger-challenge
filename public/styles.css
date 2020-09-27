@@ -68,11 +68,7 @@ a {
   text-decoration: none;
 }
 
-/********MORE Global styles***/ 
-.hidden {
-  display: none;
-}
-
+/********MORE Global styles***/
 /* Buttons  */
 .btn-white,
 .btn-primary {
@@ -81,7 +77,6 @@ a {
   padding: 1rem 1.6rem;
   margin-top: 1.5rem;
   color: var(--mainWhite);
-  background-color: rgba(255, 255, 255, 0.151);
   border: 2px solid var(--mainWhite);
   letter-spacing: var(--mainSpacing);
   transition: var(--mainTransition);
@@ -148,14 +143,7 @@ a {
   height: 50%;
   background-color: rgba(204, 0, 20, 0.2);
 }
-
-.nav-left {
-  display: flex;
-}
-
 .nav-logo {
-  margin: 1em;
-  width: 2em;
   padding: none;
   cursor: pointer;
 }
@@ -184,24 +172,18 @@ a {
 .nav-link {
   display: block;
   padding: 1rem 2rem;
-  margin: 0 1rem;
   color: var(--mainWhite);
   font-family: 'Russo One';
   font-size: large;
-  font-weight: normal;
+  font-weight: bold;
   letter-spacing: var(--mainSpacing);
   transition: var(--mainTransition);
-}
-
-.nav-left > h2 {
-  margin-top: 1.3em;
-  margin-left: 0;
-  color: var(--primaryCol);
 }
 
 .nav-link:hover {
   color: var(--primaryCol);
   background: var(--darkGrey);
+  padding-left: 2.5rem;
 }
 @media screen and (min-width: 800px) {
   .nav-toggle {

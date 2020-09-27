@@ -1,0 +1,79 @@
+.register {
+  background-color: white;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.register__logo {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  object-fit: contain;
+  width: 100px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.register__container {
+  width: 300px;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  border-radius: 5px;
+  border: 1px solid lightgray;
+  padding: 20px;
+}
+.register__container > h1 {
+  font-weight: 500;
+  margin-bottom: 20px;
+  text-decoration: underline;
+  text-decoration-color: var(--primaryCol);
+}
+.register__container > form > h5 {
+  margin-bottom: 5px;
+}
+.register_info {
+  height: 30px;
+  margin-bottom: 10px;
+  background-color: white;
+  width: 98%;
+  padding: 1rem;
+}
+
+.register_check {
+  transform: scale(1);
+  display: inline-block;
+  width: 20px;
+}
+.terms_text {
+  font-size: small;
+}
+.disclaimer_text {
+  color: var(--primaryCol);
+}
+
+.register__Btn {
+  background-color: var(--primaryCol);
+  border: 1px solid;
+  width: 100%;
+  height: 30px;
+  border-radius: 2px;
+  margin: 10px auto;
+  border-color: #a88734 #9c7e31 #846a29;
+  color: #fff;
+  cursor: pointer;
+}
+.or_text {
+  text-align: center;
+  text-transform: lowercase;
+  border-top: 1px solid lightgray;
+  margin-top: 10px;
+}
+.login_text {
+  font-size: normal;
+  margin-top: 15px;
+}
+.login_link {
+  color: var(--primaryCol);
+  margin-right: 3px;
+}
