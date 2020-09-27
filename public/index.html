@@ -3,9 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!--Bootstrap CSS-->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-    <title>BitWheel</title>
+
+    <title>Bitwheel</title>
     <!-- fontawesome icons  -->
     <link rel="stylesheet" href="fontawesome-free-5.14.0-web/css/all.min.css" />
     <!-- styles -->
@@ -25,7 +24,7 @@
             <a href="#home">
               <img
                 src="./images/logo.svg"
-                alt="BitWheellogo"
+                alt="Bitwheellogo"
                 class="nav-logo"
               />
             </a>
@@ -48,31 +47,27 @@
           <!-- end of nav bar links  -->
         </div>
       </nav>
-    </header>
-    <!--Cards-->
-    <div class="row">
-      <div class="col-sm-6">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Are you a Manufacturer?</h5>
-            <p class="card-text">Upload Car Parts information on our wide OneLedger Database</p>
-            <a href="#" class="btn btn-primary">Upload Information</a>
-        </div>
-        </div>
-      </div> 
-      <div class="col-sm-6">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Are you an Owner?</h5>
-            <p class="card-text">Get parts information for your car from our One Ledger Database</p>
-            <a href="#" class="btn btn-primary">Search Parts</a>
-          </div>
+
+<!-- <<<<<<hero component>>>>>> -->
+      <!-- hero video  -->
+      <video id="videoBG" autoplay muted loop>
+        <source src="images/hero_bitwheel.mp4" type="video/mp4" />
+      </video>
+      <!-- end of hero video  -->
+      <div class="hero">
+        <div class="hero-banner">
+          <h1 class="hero-title">
+            Amazing <span class="typed-text"></span>
+            <span class="cursor typing">&nbsp;</span>
+          </h1>
+          <p class="hero-text"></p>
+          <a href="#get_started" class="btn-white scroll-link">Get Started</a>
         </div>
       </div>
-    </div>
-    <!--End of Cards-->
+    </header>
+    <!-- <<<<<<end of header>>>>>> -->
 
-    <!--DELETE THIS LINE, FOR TESTING ONLY-->
-    <div id='root'></div>
+    </header>
+    <script src="./main.js"></script>
   </body>
 </html>
