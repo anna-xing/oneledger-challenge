@@ -1,6 +1,5 @@
-// REQUIRES: query fields, env
-// RETURNS: a Promise that will resolve to {query info, tx cost}
-// throws InvalidArgument if bad args
+// REQUIRES: query fields, env -- note: operator is address
+// RETURNS: rawTx
 
 async function addPartTx(
   {
@@ -16,19 +15,18 @@ async function addPartTx(
   env
 ) {
   function isValidStrLen(str, len) {
-    return isValidStr(str) && str.length === len;
+    const { isValidString } = require('explorer-sdk-js/util');
+    return isValidString(str) && str.length === len;
   }
 
-  const addPartTxType = "990201";
-
+  const addPartTxType = 990201;
   const {
     isInteger,
     isPositiveInteger,
-    isValidStr,
-  } = require("explorer-sdk-js");
+  } = require("explorer-sdk-js/util");
   const { requestErrors } = require("middle_utility/errorHandler/errorType");
   const { request, util, offlineSerialize } = require("ons-SDK");
-  const { ErrorUtil } = require("middle_utility").TierError;
+  // const { ErrorUtil } = require("middle_utility").TierError;
 
   // input check
   if (
@@ -67,18 +65,24 @@ async function addPartTx(
     gasAdjustment
   );
   assembledTx.fee.gas = 1000;
+
   const { gas } = assembledTx.fee;
   const feeEstimationResult = await util
     .txFeeEstimator(gas, gasPrice)
     .catch((error) => {
       return Promise.reject(error);
     });
-  return Promise.resolve(
-    ErrorUtil.responseWrap({
+    
+    return await offlineSerialize.jsonObjectToBase64(assembledTx);
+
+    /*
+  const addResult = await Promise.resolve(
+    ErrorUtil.responseWrap({ // this is messing something up
       ...util.rawTxStructure(offlineSerialize.jsonObjectToBase64(assembledTx)),
       ...{ feeEstimation: feeEstimationResult.response },
     })
-  );
+  ); */
+  
 }
 
 module.exports = addPartTx;

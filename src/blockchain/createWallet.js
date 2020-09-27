@@ -1,9 +1,8 @@
-// REQUIRES: nothing
-// RETURNS: encryptedMasterKeySeed
+// REQUIRES: yourMasterKeyPassword
+// RETURNS: { encryptedMasterKeySeed, mnemonicWords }
 
-function createWallet() {
+function createWallet(yourMasterKeyPassword) {
   const HDVault = require("hd-vault");
-  const { yourMasterKeyPassword } = require("./index");
 
   const mnemonicWords = HDVault.mnemonicUtil.mnemonicGenerator24();
   const masterKey = new HDVault.MasterKeySeedManager(
@@ -11,7 +10,10 @@ function createWallet() {
     yourMasterKeyPassword
   );
   const { encryptedMasterKeySeed } = masterKey.getMasterKeySeedInfo();
-  return encryptedMasterKeySeed;
+  return {
+    encryptedMasterKeySeed: encryptedMasterKeySeed,
+    mnemonic: mnemonicWords
+  };
 }
 
 module.exports = createWallet;

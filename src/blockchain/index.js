@@ -1,11 +1,11 @@
-const yourMasterKeyPassword = "5h$mY_SupEr_sTRong_%$passWorD123#@";
+const yourMasterKeyPassword = "newpassword";
 const fullnodeUrl = "https://comm-test-fn1.devnet.oneledger.network/jsonrpc";
 const faucetServerUrl =
   "https://comm-test-faucet.devnet.oneledger.network/jsonrpc";
 const keyType = "OLT";
 const keyIndex = 0;
 const env = {
-  url: fullnodeUrl,
+  url: "https://cors-anywhere.herokuapp.com/" + fullnodeUrl,
   storeConfig: {
     platform: "browser",
     storeLocation: __dirname,
