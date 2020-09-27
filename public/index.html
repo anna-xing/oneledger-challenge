@@ -17,36 +17,7 @@
     <!-- <<<<<<header>>>>>> -->
     <header id="home">
       <!-- <<<<<<navbar>>>>>> -->
-      <nav class="navbar">
-        <div class="nav-center">
-          <!-- nav header  -->
-          <div class="nav-header">
-            <a href="#home">
-              <img
-                src="./images/logo.svg"
-                alt="Bitwheellogo"
-                class="nav-logo"
-              />
-            </a>
-            <button
-              type="button"
-              class="nav-toggle"
-              id="nav-toggle"
-              aria-label="nav-toggler"
-            >
-              <i class="fas fa-bars"></i>
-            </button>
-          </div>
-          <!-- end of navbar header  -->
-          <!-- navbar links  -->
-          <div class="nav-links" id="nav-links">
-            <a href="#about" class="nav-link scroll-link">About</a>
-            <a href="#lookup" class="nav-link scroll-link">Lookup</a>
-            <a href="#upload" class="nav-link scroll-link">Upload Info</a>
-          </div>
-          <!-- end of nav bar links  -->
-        </div>
-      </nav>
+      <div id="nav-placeholder"></div>
 
 <!-- <<<<<<hero component>>>>>> -->
       <!-- hero video  -->
@@ -57,7 +28,7 @@
       <div class="hero">
         <div class="hero-banner">
           <h1 class="hero-title">
-            Amazing <span class="typed-text"></span>
+            For <span class="typed-text"></span>
             <span class="cursor typing">&nbsp;</span>
           </h1>
           <p class="hero-text"></p>
@@ -68,6 +39,9 @@
     <!-- <<<<<<end of header>>>>>> -->
 
     </header>
+    <!-- jquery for loading in nav -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="./script.js"></script>
     <script src="./main.js"></script>
   </body>
 </html>
