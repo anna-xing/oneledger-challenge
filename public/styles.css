@@ -141,7 +141,7 @@ a {
 .navbar {
   width: 100%;
   height: 50%;
-  background-color: rgb(245, 184, 161);
+  background-color: rgba(204, 0, 20, 0.2);
 }
 .nav-logo {
   padding: none;
@@ -239,3 +239,124 @@ a {
   }
 }
 /* <<<<<<<<<<<<end of navbar >>>>> */
+/**********************hero* ************************/
+.hero {
+  /* min-height: calc(100vh - 62px); */
+  background: linear-gradient(
+    0deg,
+    rgba(2, 0, 36, 0.3) 0%,
+    rgba(204, 0, 20, 0.2)
+  );
+  min-height: 100vh;
+  position: relative;
+  top: 50%;
+  width: 100%;
+  margin: 0 auto;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.hero-banner {
+  text-align: center;
+  color: var(--primaryCol);
+  padding: 0 2rem;
+}
+.hero-title {
+  color: var(--mainWhite);
+  text-transform: uppercase;
+  font-weight: bold;
+  margin-bottom: 2rem;
+  letter-spacing: 0.4rem;
+  overflow: hidden;
+  padding: 0.5rem;
+}
+/* animation for cursor  */
+.typed-text {
+  font-weight: 500;
+  color: orange;
+  font-family: 'Russo One';
+}
+.cursor {
+  display: inline-block;
+  width: 5px;
+  background-color: var(--mainWhite);
+  margin-left: 0.1rem;
+  animation: blink 1s infinite;
+}
+.typing {
+  animation: none;
+}
+@keyframes blink {
+  0% {
+    background-color: var(--mainWhite);
+  }
+  49% {
+    background-color: var(--mainWhite);
+  }
+  50% {
+    background-color: transparent;
+  }
+  99% {
+    background-color: transparent;
+  }
+  100% {
+    background-color: var(--mainWhite);
+  }
+}
+/* end of animation cursor */
+.hero-text {
+  color: var(--offWhite);
+  width: 85%;
+  font-weight: 400;
+  margin: 0 auto;
+  letter-spacing: var(--mainSpacing);
+}
+#videoBG {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: auto;
+  min-width: 100%;
+  height: auto;
+  min-height: 100%;
+  z-index: -5;
+}
+
+/* <<<<option for mobile screen to not load video >>>> */
+/* @media screen and (max-width: 767px) {
+  #videoBG {
+    display: none;
+  }
+  body {
+    background: url('poster.jpg');
+    background-size: cover;
+  }
+} */
+
+@media screen and (min-width: 768px) {
+  .hero-title {
+    font-size: 4.5rem;
+  }
+  .hero-text {
+    width: 70%;
+  }
+  .hero-banner {
+    opacity: 1;
+  }
+}
+@media (min-aspect-ratio: 16/9) {
+  #videoBG {
+    width: 100%;
+    height: auto;
+  }
+}
+@media (max-aspect-ratio: 16/9) {
+  #videoBG {
+    width: auto;
+    height: 100%;
+  }
+}
+/**********************end of hero**************************/
