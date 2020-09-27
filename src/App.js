@@ -13,7 +13,7 @@ const {
   sign,
   broadcastTx,
 } = require("./blockchain/index");
-
+/*
 async function test() {
   // wallet + account creation
   let temp = await createWallet(yourMasterKeyPassword);
@@ -76,9 +76,9 @@ async function test() {
     console.log(result);
   }, 3000); // increase delay if querying acc balance
 }
-
+*/
 function App() {
-  test();
+  //test();
   return <div className="App"></div>;
 }
 export default App;
