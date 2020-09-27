@@ -50,13 +50,17 @@ async function test() {
       env
     );
     console.log(newPart);
+    const partRawTx = newPart.data;
+    console.log('partRawTx: ' + partRawTx)
 
-    // signing + broadcasting
-    const signature = await sign(newPart.data, emks);
+    // signing
+    const signature = await sign(partRawTx, emks);
     console.log(signature);
+
+    // broadcasting
     const txHash = await broadcastTx({
       publicKey: publicKey, 
-      rawTx: newPart.data, 
+      rawTx: partRawTx, 
       signature: signature
     }, env);
     console.log(txHash)
