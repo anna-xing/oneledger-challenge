@@ -3,10 +3,6 @@ import "./App.css";
 
 const {
   yourMasterKeyPassword,
-  fullnodeUrl,
-  faucetServerUrl,
-  keyType,
-  keyIndex,
   env,
   createWallet,
   createAccount,
@@ -21,9 +17,12 @@ const {
 async function test() {
   // wallet + account creation
   const emks = await createWallet(yourMasterKeyPassword);
-  const { i, address, publicKey } = await createAccount(yourMasterKeyPassword, emks);
+  const { i, address, publicKey } = await createAccount(
+    yourMasterKeyPassword,
+    emks
+  );
   console.log(address);
-  console.log('pk - ' + publicKey)
+  console.log("pk - " + publicKey);
 
   // request test olt
   let response = await requestTestOLT(address);
@@ -42,7 +41,7 @@ async function test() {
         partType: "engine",
         dealerName: "John",
         dealerAddress: "9 Apple St",
-        stockNum: '123456789',
+        stockNum: "aaaaaaaaa",
         year: 2008,
         operator: address,
       },
@@ -52,24 +51,34 @@ async function test() {
 
     // signing
     const signature = await sign(rawTx, emks);
-    console.log('sig: ' + signature);
+    console.log("sig: " + signature);
 
     // broadcasting
-    const txHash = await broadcastTx({
-      publicKey: publicKey, 
-      rawTx: rawTx,
-      signature: signature
-    }, env);
-    console.log(txHash)
-  }, 5000);
+    const txHash = await broadcastTx(
+      {
+        publicKey: publicKey,
+        rawTx: rawTx,
+        signature: signature,
+      },
+      env
+    );
+    console.log(txHash);
+
+    // querying blockchain
+    const result = await queryPart(
+      {
+        VIN: "1D4HR48N73F526307",
+        "Part Type": "engine",
+      },
+      env
+    );
+    console.log(result);
+  }, 3000); // increase delay if querying acc balance
 }
 
 function App() {
   test();
-  return (
-    <div className="App">
-    </div>
-  );
+  return <div className="App"></div>;
 }
 
 export default App;

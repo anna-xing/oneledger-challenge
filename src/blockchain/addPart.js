@@ -26,7 +26,7 @@ async function addPartTx(
   } = require("explorer-sdk-js/util");
   const { requestErrors } = require("middle_utility/errorHandler/errorType");
   const { request, util, offlineSerialize } = require("ons-SDK");
-  const { ErrorUtil } = require("middle_utility").TierError;
+  // const { ErrorUtil } = require("middle_utility").TierError;
 
   // input check
   if (
@@ -75,13 +75,13 @@ async function addPartTx(
     
     return await offlineSerialize.jsonObjectToBase64(assembledTx);
 
+    /*
   const addResult = await Promise.resolve(
     ErrorUtil.responseWrap({ // this is messing something up
       ...util.rawTxStructure(offlineSerialize.jsonObjectToBase64(assembledTx)),
       ...{ feeEstimation: feeEstimationResult.response },
     })
-  );
-
+  ); */
   
 }
 
