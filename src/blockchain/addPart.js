@@ -73,7 +73,7 @@ async function addPartTx(
       return Promise.reject(error);
     });
     
-    return await offlineSerialize.jsonObjectToBase64(assembledTx);
+    return offlineSerialize.jsonObjectToBase64(assembledTx);
 
     /*
   const addResult = await Promise.resolve(
