@@ -49,7 +49,7 @@ const initAccBtn = Document.getElementById('initAccBtn');
 
 initAccBtn.addEventListener('click', async function(e) {
     window.dispatchEvent(startLoad);
-    let = await createWallet(yourMasterKeyPassword);
+    let temp = createWallet(yourMasterKeyPassword);
     const emks = temp.encryptedMasterKeySeed;
     const mnemonic = temp.mnemonic;
     const { i, address, publicKey } = await createAccount(yourMasterKeyPassword, emks);
@@ -116,7 +116,8 @@ uploadFormBtn.addEventListener('click', async function(e) {
 
 // Helper function for maintaining account balance
 async function maintainBalance(addr) {
-    let balance = await queryAccount({addr, 'OLT'}, env);
+    let balance = await queryAccount({addr}, env);
+    balance = balance.OLT;
     if (balance <= 0) await requestTestOLT(addr);
 }
 
@@ -125,3 +126,9 @@ async function maintainBalance(addr) {
 // TODO: add id='
 const queryFormBtn = Document.getElementById('queryFormBtn');
 
+queryFormBtn.addEventListener('click', async function(e) {
+    window.dispatchEvent('startLoad');
+    const vals = {
+
+    }
+})
