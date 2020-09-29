@@ -4,6 +4,7 @@
 > People's Choice Award - 2nd Place 🥈
 
 This project was developed by Harnoor Singh Reen, Harsaroop Singh, Anna Xing and Prathamesh Shanbhag.
+
 Check out the implementation at: https://bitwheel-c772d.web.app/
 
 # Description
