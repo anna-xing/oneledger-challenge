@@ -1,16 +1,18 @@
-# BitWheel - OneLedger Challenge for BorderHacks 2020
+# BitWheel - BorderHacks 2020
+> OneLedger Challenge Winner 🏆
 
-Checkout the Domain at: https://bitwheel-c772d.web.app/
+> People's Choice Award - 2nd Place 🥈
 
-This project was worked on by Harnoor Singh Reen, Harsaroop Singh, Anna Xing and Prathamesh Shanbhag for BorderHacks 2020
+This project was developed by Harnoor Singh Reen, Harsaroop Singh, Anna Xing and Prathamesh Shanbhag.
+Check out the implementation at: https://bitwheel-c772d.web.app/
 
-# Inspiration
-We wanted to learn some new technologies and the OneLedger Challenge had a huge learning curve for all of us
-# What it does
-Our app provides a User Interface to query information about Car Parts and provides the Manufactures a means to upload information for for the customers
-# How we built it
-React, BlockChain, HTML5, CSS3, JavaScript, Bootstrap
-# Challenges we ran into
-A lot. Using the tools the challenge provided us was a huge learning curve.
-# Accomplishments that we're proud of
-We learned in a space of 3 days. The BlockChain was interesting and fascinating. It was also a great improvement for our Web Development skills.
+# Description
+BitWheel provides a platform for car manufacturers to upload car part data to the blockchain, and for end-users to query this information by Vehicle ID and part type. This enables secure, trustless information sharing on the second-hand automobile market.
+
+# Tech Stack
+- JavaScript
+- OneLedger SDK
+- React
+- HTML
+- CSS
+- Bootstrap
